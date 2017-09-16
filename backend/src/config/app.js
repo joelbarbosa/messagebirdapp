@@ -10,7 +10,7 @@ import corsOptions from './cors';
 import queryParse from 'express-query-int';
 import db from './db';
 import MessageBirdErrorHandle from '../utils/MessageBirdErrorHandle'; 
-import { callParallelFunctions } from '../utils/functions_utils';
+import { callChainFunctions } from '../utils/functions_utils';
 
 const app = express();
 
@@ -31,6 +31,6 @@ const startApplicationServices = [
   appConfig(app)
 ];
 
-callParallelFunctions(startApplicationServices);
+callChainFunctions(startApplicationServices);
 
 export { app };
