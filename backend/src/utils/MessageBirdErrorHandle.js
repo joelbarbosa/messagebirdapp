@@ -1,4 +1,5 @@
 import ExtendableError from 'es6-error';
+import Log from '../config/winston';
 
 class MessageBirdErrorHandle extends ExtendableError {
   
@@ -23,7 +24,7 @@ class MessageBirdErrorHandle extends ExtendableError {
    * @return {object} the same object
    */
   _logConsole(object) {
-    console.log(object);
+    Log.error(object);
     return object;
   }
 

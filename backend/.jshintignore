@@ -1,4 +1,5 @@
 config/
+scripts/
 node_modules/
 test/
 apidoc/

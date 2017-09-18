@@ -1,29 +1,33 @@
 /* jshint ignore:start */
 import mongoose from 'mongoose';
+import Log from './winston';
 mongoose.Promise = Promise;
 
-const init = (config) => {
-  return mongoose.connect(config.databaseURL, 
+const init = () => {
+  return mongoose.connect(process.env.DB, 
     { useMongoClient: true })
     .then(
       () => { 
-        console.log("Database connection ready");      
+        Log.info('Database connection ready');
+        close();    
       },
       err => {
-        console.log('Error on connect database');
+        Log.error('Error on connect database: ' + err);
         process.exit(1);
       }
     ).catch(error => {
-      console.log('catch ' + err);
+      Log.error('Error ' + err);
       process.exit(1);
     });
+};
 
-  process.on('SIGINT', function() {
-    return mongoose.connection.close(function () {
-      console.log('Mongoose disconnected on app termination');
+const close = () => {
+  process.on('SIGINT', () => {
+    return mongoose.connection.close(() => {
+      Log.info('Mongoose disconnected on app termination');    
       process.exit(0);
     });
   });
-};
+}
 
-export default { init };
+export default { init, close };

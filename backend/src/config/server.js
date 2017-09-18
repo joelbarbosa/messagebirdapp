@@ -5,7 +5,7 @@ import { onListening, onError } from './listen_server';
 import http from 'http';
 
 const server = http.createServer(app)
-  .listen(normalizeToDecimal(app.get('port')));
+  .listen(normalizeToDecimal(process.env.PORT));
 
 /**
  * Listen on provided all network interfaces.

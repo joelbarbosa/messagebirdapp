@@ -3,7 +3,7 @@ import MessageBirdErrorHandle from './MessageBirdErrorHandle';
 /** 
  * @param {*} functions 
  */
-const callChainFunctions = (fns) => { 
+const callParallelFunctions = (fns) => { 
   if (!Array.isArray(fns)) {
     throw new MessageBirdErrorHandle('only array of functions');
   }
@@ -23,6 +23,6 @@ const wrapGenerator = (generatorsFn) => {
 }
 
 export { 
-  callChainFunctions, 
+  callParallelFunctions, 
   wrapGenerator 
 }
