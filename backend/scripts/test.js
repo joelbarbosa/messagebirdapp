@@ -25,12 +25,24 @@ const mocha = new Mocha({
   retries: 0
 });
 
-fs.readdirSync(testDir).filter(function(file){
+function walkDir(root) {
+    const stat = fs.statSync(root);
+
+    if (stat.isDirectory()) {
+        const dirs = fs.readdirSync(root).filter(item => !item.startsWith('.'));
+        let results = dirs.map(sub => walkDir(`${root}/${sub}`));
+        return [].concat(...results);
+    } else {
+        return root;
+    }
+}
+
+walkDir(testDir).filter(function(file){
     // Only keep the .js files
     return file.substr(-3) === '.js';
 }).forEach(function(file){
     mocha.addFile(
-        path.join(testDir, file)
+        path.join(file)
     );
 });
 

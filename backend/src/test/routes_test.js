@@ -10,3 +10,13 @@ describe('Test Application Servervice is working', () => {
       .expect(200, done());
   });
 });
+
+describe('Test Message API', () => {
+  it('POST /message should be exist', (done) => {
+    request(app)
+    .post('/message')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(200, done);
+  });
+});

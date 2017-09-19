@@ -4,12 +4,13 @@ import Log from './winston';
 mongoose.Promise = Promise;
 
 const init = () => {
+  
   return mongoose.connect(process.env.DB, 
     { useMongoClient: true })
     .then(
       () => { 
         Log.info('Database connection ready');
-        close();    
+        closeOn();    
       },
       err => {
         Log.error('Error on connect database: ' + err);
@@ -21,7 +22,7 @@ const init = () => {
     });
 };
 
-const close = () => {
+const closeOn = () => {
   process.on('SIGINT', () => {
     return mongoose.connection.close(() => {
       Log.info('Mongoose disconnected on app termination');    
@@ -30,4 +31,4 @@ const close = () => {
   });
 }
 
-export default { init, close };
+export default { init, closeOn };
