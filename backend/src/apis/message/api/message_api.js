@@ -26,7 +26,7 @@ const messageApi = app => {
   app.post(
     '/webhook/message',
     wrapGenerator(function *(req, res) {
-      const { message } = req.body;)
+      const { message } = req.body
       yield callParallelFunctions([
         webhooksApi(app).emitAsyncHook('sms_received', message),
         RoutesAdapter(req, res).asyncResponse()

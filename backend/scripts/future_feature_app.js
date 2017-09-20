@@ -12,6 +12,7 @@ const featureApp = (() => {
     1. Use something like pm2 for production.
     2. Implementing Cluster for speeding up app.
     3. to implement alias with webpack or something
+    4. to implement JsonWebToken
     
     * It only appear in development
   `);
