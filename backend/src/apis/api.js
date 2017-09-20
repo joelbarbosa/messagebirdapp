@@ -1,5 +1,5 @@
 import RoutesAdapter from '../config/routes_adapter';
-import { wrapGenerator } from '../utils/functions_utils';
+import { wrapGenerator, callParallelFunctions } from '../utils/functions_utils';
 
 const genericApi = app => {
   

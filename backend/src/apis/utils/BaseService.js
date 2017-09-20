@@ -4,7 +4,7 @@ class BaseService {
     this.schema = schema;
   }
 
-  save(schema) {   
+  save(schema) { 
     return schema.save();
   }
 

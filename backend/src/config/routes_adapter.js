@@ -5,11 +5,16 @@ const RoutesAdapter = (request, response) => {
   const res = response;
   
   /** 
+   * objectJson
+   * oprions {HTTP_STATUS_CODE: ?}
    * @param {*} objectJson
+   * @param {*} 
    */
-  const asyncResponse = (objectJson) => {
-    return new Promise((resolve, reject) => {
-      resolve(res.status(200).json(objectJson));
+  const asyncResponse = (objectJson = { status: 'success' }, oprions = { HTTP_STATUS_CODE: 200 }) => {
+    return new Promise(() => {
+      return res.status(oprions.HTTP_STATUS_CODE).json(objectJson);
+    }).catch(err => {
+      return res.status(500).json({ status: 'error' });
     });
   }
 

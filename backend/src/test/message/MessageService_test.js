@@ -7,11 +7,11 @@ describe('MessageService', () => {
 
     it('#createMessageBird should send messageBird without errors', (done) => {
       const message = {
-        "originator": "MessageBird",
+        "originator": "5585988127241",
         "recipients": [
-          "31612345678"
+          "5585988127241"
         ],
-        "body": "This is a test message."
+        "body": "This is a test message Joel."
       };
 
       let promise = messageService.createMessageBird(message);
