@@ -1,4 +1,4 @@
-import MessageBirdErrorHandle from '../utils/MessageBirdErrorHandle';
+import MessageBirdErrorHandle from 'utils/MessageBirdErrorHandle';
 
 const RoutesAdapter = (request, response) => {
   const req = request;
@@ -12,6 +12,7 @@ const RoutesAdapter = (request, response) => {
    */
   const asyncResponse = (objectJson = { status: 'success' }, oprions = { HTTP_STATUS_CODE: 200 }) => {
     return new Promise(() => {
+      console.log(objectJson);
       return res.status(oprions.HTTP_STATUS_CODE).json(objectJson);
     }).catch(err => {
       return res.status(500).json({ status: 'error' });

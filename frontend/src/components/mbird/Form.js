@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 class Form extends Component {
   render() {
-    return( 
-      <form className="form">
+    const { onSubmit, onChange } = this.props;
+    return (
+      <form className="form" onSubmit={onSubmit} onChange={onChange}>
         { this.props.children }
       </form>
     );

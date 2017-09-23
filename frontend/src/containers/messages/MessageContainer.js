@@ -1,50 +1,60 @@
+/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-import { Form } from 'components/mbird/index';
-import { sendMessage } from 'actions/actions_message';
+import { bindActionCreators } from 'redux';
+import { sendMessage } from 'actions';
+import { FormMessage, TableMessage } from 'components';
+import HOCContainer from '../HOCContainer';
 
 class MessageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       message: {},
-    }
+    };
   }
 
-  sendMessage = (event) => {
+  onFormSubmit = (event) => {
     event.preventDefault();
+    const { number, body } = event.target;
     const message = {
-        "message": {
-          "originator": "5585988127241",
-          "recipients": [
-            "5585988127241"
-          ],
-          "body": "This is a test message."
-        }
+      message: {
+        originator: number.value,
+        recipients: [
+          number.value,
+        ],
+        body: body.value,
+      },
     };
-
     this.props.sendMessage(message);
   }
 
-  render() {   
-    return(      
+  render() {
+    return (
       <section>
-        <Form>
-          <input placeholder="Phone Number"/>
-          <textarea placeholder="What's up..."/>
-          <button
-            onClick={this.sendMessage}
-          >
-            Send
-          </button>
-        </Form>
+        <FormMessage {...this.props} onFormSubmit={this.onFormSubmit} />
+        <TableMessage />
       </section>
     );
   }
 }
 
-const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch)
+const mapStateToProps = (state) => {
+  const {
+    messageReducer: { message },
+    alertReducer,
+  } = state;
 
-export default connect( mapStateToProps, mapDispatchToProps)(MessageContainer);
+  return {
+    alertReducer,
+    message,
+  };
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ sendMessage },
+    dispatch,
+  );
+
+export default connect(
+  mapStateToProps, mapDispatchToProps)(HOCContainer(MessageContainer));

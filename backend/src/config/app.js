@@ -9,11 +9,11 @@ import helmet from 'helmet';
 import routes from './routes';
 import corsOptions from './cors';
 import db from './db';
-import MessageBirdErrorHandle from '../utils/MessageBirdErrorHandle'; 
+import MessageBirdErrorHandle from 'utils/MessageBirdErrorHandle'; 
 import { 
   callParallelFunctions,
   callChainFunctions
-} from '../utils/functions_utils';
+} from 'utils/functions_utils';
 
 const app = express();
 

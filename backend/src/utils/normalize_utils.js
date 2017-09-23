@@ -1,4 +1,4 @@
-import MessageBirdErrorHandle from '../utils/MessageBirdErrorHandle';
+import MessageBirdErrorHandle from 'utils/MessageBirdErrorHandle';
 
 /**
  * @return {number} port

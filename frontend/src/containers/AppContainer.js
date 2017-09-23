@@ -10,17 +10,18 @@ class AppContainer extends Component {
         <Router>
           <div>
             <Switch />
-              <Row className="col-9 center">
-                <Container>            
-                  <Route
-                    exact                       
-                    path="/"
-                    component={MessageContainer} />
-                </Container>
-              </Row>                                          
+            <Row className="col-9 center">
+              <Container>
+                <Route
+                  exact
+                  path="/"
+                  component={MessageContainer}
+                />
+              </Container>
+            </Row>
             <Switch />
           </div>
-        </Router> 
+        </Router>
       </section>
     );
   }

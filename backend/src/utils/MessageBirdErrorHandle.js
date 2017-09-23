@@ -1,5 +1,5 @@
 import ExtendableError from 'es6-error';
-import Log from '../config/winston';
+import Log from 'config/winston';
 
 class MessageBirdErrorHandle extends ExtendableError {
   

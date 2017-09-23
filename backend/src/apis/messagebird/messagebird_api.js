@@ -1,5 +1,5 @@
 // jshint ignore: start
-import MessageBirdErrorHandle from '../../utils/MessageBirdErrorHandle';
+import MessageBirdErrorHandle from 'utils/MessageBirdErrorHandle';
 const messagebird = require('messagebird')(process.env.MSG_BIRD_YOUR_ACCESS_KEY);
 const promisifyAll = require('callback-and-promise/all');
 const messages = promisifyAll(messagebird.messages, {}, [

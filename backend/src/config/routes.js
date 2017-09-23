@@ -1,9 +1,9 @@
 import RoutesAdapter from './routes_adapter';
-import { wrapGenerator, callParallelFunctions } from '../utils/functions_utils';
-import MessageBirdErrorHandle from '../utils/MessageBirdErrorHandle';
-import Log from '../config/winston';
-import genericApi from '../apis/api';
-import messageApi from '../apis/message/api/message_api';
+import { wrapGenerator, callParallelFunctions } from 'utils/functions_utils';
+import MessageBirdErrorHandle from 'utils/MessageBirdErrorHandle';
+import Log from 'config/winston';
+import genericApi from 'apis/api';
+import messageApi from 'apis/message/api/message_api';
 
 /**
  * routes configurations

@@ -1,7 +1,7 @@
 // jshint ignore: start
 import WebHooks from 'node-webhooks';
 const promisifyAll = require('callback-and-promise/all');
-import Log from '../../config/winston.js';
+import Log from 'config/winston.js';
 
 const webhooksApi = app => {
   

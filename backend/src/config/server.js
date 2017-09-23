@@ -1,6 +1,6 @@
 /* jshint ignore:start */
 import { app } from './app';
-import { normalizeToDecimal } from '../utils/normalize_utils';
+import { normalizeToDecimal } from 'utils/normalize_utils';
 import { onListening, onError } from './listen_server';
 import http from 'http';
 

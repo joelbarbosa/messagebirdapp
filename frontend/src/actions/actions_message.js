@@ -4,18 +4,16 @@ import MessageApi from '../apis/MessageApi';
 export const sendMessage = (message) => {
   return (disparch) => {
     return MessageApi.sendMessage(message)
-    .then(body => (body))
-    .then(({ data }) => {            
-      disparch({
-        type: actions.SENT,
-        message: data
-      });      
-    }).catch(error => {
-      console.log(new Error(error));
-      disparch({
-        type: actions.ERROR,
-        error: error
+      .then((body) => {
+        disparch({
+          type: actions.SUCCESS,
+          message: body,
+        });
+      }).catch((error) => {
+        disparch({
+          type: actions.ERROR,
+          message: error.message || 'Something bad happened',
+        });
       });
-    });
-  }
-}
+  };
+};

@@ -1,6 +1,6 @@
 import assert from 'assert';
 import { should } from 'chai';
-import messageService from '../../apis/message/services/MessageService';
+import messageService from 'apis/message/services/MessageService';
 should();
 
 describe('MessageService', () => {

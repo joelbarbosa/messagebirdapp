@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { app } from '../../src/loader';
+import { app } from 'loader';
 
 describe('Test Application Servervice is working', () => {
   it('GET / should be response with json', (done) => {

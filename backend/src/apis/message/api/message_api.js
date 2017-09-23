@@ -1,5 +1,5 @@
-import RoutesAdapter from '../../../config/routes_adapter';
-import { wrapGenerator, callParallelFunctions } from '../../../utils/functions_utils';
+import RoutesAdapter from 'config/routes_adapter';
+import { wrapGenerator, callParallelFunctions } from 'utils/functions_utils';
 import messagervice from '../services/Messageservice';
 import webhooksApi from '../../webhooks/webhooks';
 
@@ -10,7 +10,7 @@ const messageApi = app => {
     wrapGenerator(function *(req, res) {
       const { message } = req.body;
       yield RoutesAdapter(req, res)
-        .asyncResponse(messagervice.createMessageBird(message));     
+        .asyncResponse(yield messagervice.createMessageBird(message));     
     })
   );
 
@@ -19,7 +19,7 @@ const messageApi = app => {
     wrapGenerator(function *(req, res) {
       const message = req.body;
       yield RoutesAdapter(req, res)
-        .asyncResponse(messagervice.saveAndValidate(message));     
+        .asyncResponse(yield messagervice.saveAndValidate(message));     
     })
   );
 

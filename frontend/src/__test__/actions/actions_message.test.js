@@ -2,9 +2,9 @@ import fetch from 'isomorphic-fetch';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import nock from 'nock';
-import * as actions from '../../actions/actions_message';
-import * as types from '../../actions/type_actions';
-import * as urls from '../../apis/application_api_urls';
+import * as actions from 'actions/actions_message';
+import * as types from 'actions/type_actions';
+import * as urls from 'apis/application_api_urls';
 
 const middlewares = [ thunk ];
 const mockStore = configureMockStore(middlewares);
