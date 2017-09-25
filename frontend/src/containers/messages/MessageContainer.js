@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { sendMessage } from 'actions';
+import { sendMessage, allMessages } from 'actions';
 import { FormMessage, TableMessage } from 'components';
 import HOCContainer from '../HOCContainer';
 
@@ -11,7 +11,13 @@ class MessageContainer extends Component {
     super(props);
     this.state = {
       message: {},
+      messages: [],
+      isLoad: true,
     };
+  }
+
+  componentDidMount() {
+    this.props.allMessages();
   }
 
   onFormSubmit = (event) => {
@@ -33,7 +39,7 @@ class MessageContainer extends Component {
     return (
       <section>
         <FormMessage {...this.props} onFormSubmit={this.onFormSubmit} />
-        <TableMessage />
+        <TableMessage {...this.props} />
       </section>
     );
   }
@@ -41,18 +47,20 @@ class MessageContainer extends Component {
 
 const mapStateToProps = (state) => {
   const {
-    messageReducer: { message },
+    messageReducer: { message, messages, isLoad },
     alertReducer,
   } = state;
 
   return {
     alertReducer,
     message,
+    messages,
+    isLoad,
   };
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ sendMessage },
+  bindActionCreators({ sendMessage, allMessages },
     dispatch,
   );
 

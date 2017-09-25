@@ -5,6 +5,7 @@ const URLS_DEFAULT = {
 
 const MESSAGE_API = {
   SEND_MESSAGE: `${URLS_DEFAULT.WS_URL}/sendMessage/`,
+  MESSAGES: `${URLS_DEFAULT.WS_URL}/messages`,
 };
 
 export { URLS_DEFAULT, MESSAGE_API };

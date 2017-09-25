@@ -1,7 +1,7 @@
 import BaseService from  '../../utils/BaseService';
 import MessageModel from '../models/MessageSchema';
 import MessageBirdAdapter from '../../messagebird/messagebird_api';
-import { isNull, wrongData } from '../../utils/api_utils';
+import { isNull, wrongDataAsync } from '../../utils/api_utils';
 
 class Messagervice extends BaseService {
 
@@ -14,22 +14,36 @@ class Messagervice extends BaseService {
    * @param {*} message 
    */
   mountUser(message) {
-    console.log(message)
     return new MessageModel(message);
   }
   
   saveAndValidate(message) {
-    if (isNull(message)) {
-      return { status: wrongData() };
-    }
-    return this.save(this.mountUser(message));
+    return isNull(message) ? wrongDataAsync() :
+      this.save(this.mountUser(message));
   }
 
   createMessageBird(message) {
-    if (isNull(message)) {
-      return { status: wrongData() };
-    }
-    return MessageBirdAdapter().create(message);
+    return isNull(message) ? wrongDataAsync() :
+      MessageBirdAdapter().create(message);
+  }
+
+  readSMSByID(id) {
+    console.log(id)
+    return isNull(id) ? wrongDataAsync() :
+      MessageBirdAdapter().read(id);
+  }
+  
+  /**
+   * I have not seen a way to fetch all messages
+   * in the api.
+   * @param {*} messages 
+   */
+  findAllSMS(messages) {
+    return Promise.all(
+      messages.map(sms => {
+        return MessageBirdAdapter().read(sms.id);
+      })
+    ).then(result => result );
   }
 
 }

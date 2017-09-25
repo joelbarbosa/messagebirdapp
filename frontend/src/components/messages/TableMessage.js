@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import { Form } from 'components/mbird/index';
+import HOCLoad from '../HOCLoad';
 
 class TableMessage extends Component {
   render() {
+    // just to end I put it, but you could
+    // create a trrow component.
+    const rows = [];
+    this.props.messages.map(message =>
+      rows.push(<tr key={message.id}>
+        <td>{ message.originator }</td>
+        <td>{ message.body }</td>
+      </tr>));
     return (
       <table>
         <thead>
@@ -12,14 +21,11 @@ class TableMessage extends Component {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>+55 98812312</th>
-            <th>Teste</th>
-          </tr>
+          { rows }
         </tbody>
       </table>
     );
   }
 }
 
-export default TableMessage;
+export default HOCLoad(TableMessage);

@@ -16,8 +16,8 @@ class FormMessage extends Component {
         <button
           type="submit"
         >
-            Send
-          </button>
+          Send
+        </button>
       </Form>
     );
   }

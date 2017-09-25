@@ -1,5 +1,8 @@
 @import 'color';
 
+$break-small: 320px;
+$break-large: 1200px;
+
 body {
   background-color: $bg-success;
 };
@@ -7,6 +10,7 @@ body {
 *, *:before, *:after {
   box-sizing: border-box;
   position: relative;
+  -webkit-box-sizing: border-box;
 }
 
 .center {
@@ -14,7 +18,16 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: 100%;
+  overflow: auto;
+  overflow-y: auto;
+
+  @media (min-width: 768px) {
+    max-height: 780px;
+  }
+
 }
+
 
 input {
   border-radius: 2px;

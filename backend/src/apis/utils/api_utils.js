@@ -5,9 +5,10 @@ const isNull = (object) => {
   return false;
 }
 
-const wrongData = (message = 'You send wrong data') => message;
+const wrongDataAsync = (message = 'You send wrong data') => 
+  new Promise((resolve) => resolve({ status: message }));
 
-export { 
-         isNull,
-         wrongData
-       };
+export {
+  isNull,
+  wrongDataAsync
+};

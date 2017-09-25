@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import fetch from 'isomorphic-fetch';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -6,7 +8,7 @@ import * as actions from 'actions/actions_message';
 import * as types from 'actions/type_actions';
 import * as urls from 'apis/application_api_urls';
 
-const middlewares = [ thunk ];
+const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
 afterEach(() => {
@@ -14,12 +16,17 @@ afterEach(() => {
 });
 
 describe('message actions', () => {
-  
 
   it('should be nock POST SEND_MESSAGE', () => {
     nock(urls.URLS_DEFAULT.WS_URL)
     .post(urls.MESSAGE_API.SEND_MESSAGE)
-    .reply(200);  
+    .reply(200);
+  });
+
+  it('should be nock GET MESSAGES from MessageBird', () => {
+    nock(urls.URLS_DEFAULT.WS_URL)
+    .post(urls.MESSAGE_API.MESSAGES)
+    .reply(200);
   });
 
   it('should be create action sendMessage', () => {
@@ -36,7 +43,16 @@ describe('message actions', () => {
     return store.dispatch(actions.sendMessage(message))
       .then(() => {
         const actions = store.getActions();
-        expect(actions[0].type).toEqual(types.SENT);
+        expect(actions[0].type).toEqual(types.SUCCESS);
+      });
+  });
+
+  it('should be create action allMessages', () => {
+    const store = mockStore({});
+    return store.dispatch(actions.allMessages())
+      .then(() => {
+        const getActions = store.getActions();
+        expect(getActions[0].type).toEqual(types.FETCH);
       });
   });
 
